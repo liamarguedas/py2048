@@ -119,7 +119,6 @@ def VERIFY_GAME(TABLE):
 
     return available_moves
 
-
 def AVAILABLE_SPOT(TABLE, row, column):
     return True if TABLE[row][column] == BLANK else False
 
@@ -133,7 +132,7 @@ def SpawnNumber(TABLE, number=2):
     TABLE[row][column] = number
 
 
-def get_user_input(input, TABLE):
+def ExecuteUserAction(input, TABLE):
     moves = {"w": MOVEUP, "s": MOVEDOWN, "d": MOVERIGHT, "a": MOVELEFT}
     moves[input](TABLE)
     
