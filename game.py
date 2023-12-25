@@ -1,5 +1,6 @@
 import random
 
+BLANK = 0
 
 def update_table(values: list):
     print()
@@ -15,10 +16,10 @@ def newColumnRow():
 
 def new_game(starting_value=2):
     TABLE = [
-        [" ", " ", " ", " "],
-        [" ", " ", " ", " "],
-        [" ", " ", " ", " "],
-        [" ", " ", " ", " "],
+        [BLANK, BLANK, BLANK, BLANK],
+        [BLANK, BLANK, BLANK, BLANK],
+        [BLANK, BLANK, BLANK, BLANK],
+        [BLANK, BLANK, BLANK, BLANK],
     ]
 
     FSC, FSR = newColumnRow()
@@ -39,7 +40,7 @@ def column(matrix, column, drop_blanks=True):
         return [
             (row, value[column])
             for row, value in enumerate(matrix)
-            if value[column] != " "
+            if value[column] != BLANK
         ]
     return [(row, value[column]) for row, value in enumerate(matrix)]
 
@@ -47,7 +48,7 @@ def column(matrix, column, drop_blanks=True):
 def row(matrix, row, drop_blanks=True):
     if drop_blanks:
         return [
-            (column, value) for column, value in enumerate(matrix[row]) if value != " "
+            (column, value) for column, value in enumerate(matrix[row]) if value != BLANK
         ]
     return [(column, value) for column, value in enumerate(matrix[row])]
 
@@ -68,7 +69,7 @@ def sum_vector(vector, reversed=False):
 
             value += 1
 
-    available_spaces = [" "] * (4 - len(result_vector))
+    available_spaces = [BLANK] * (4 - len(result_vector))
 
     if not reversed:
         result_vector.extend(available_spaces)
@@ -113,14 +114,14 @@ def VERIFY_GAME(TABLE):
     available_moves = False
 
     for row in TABLE:
-        if " " in row:
+        if BLANK in row:
             available_moves = True
 
     return available_moves
 
 
 def AVAILABLE_SPOT(TABLE, row, column):
-    return True if TABLE[row][column] == " " else False
+    return True if TABLE[row][column] == BLANK else False
 
 
 def SpawnNumber(TABLE, number=2):
@@ -135,3 +136,4 @@ def SpawnNumber(TABLE, number=2):
 def get_user_input(input, TABLE):
     moves = {"w": MOVEUP, "s": MOVEDOWN, "d": MOVERIGHT, "a": MOVELEFT}
     moves[input](TABLE)
+    

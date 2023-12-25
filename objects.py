@@ -1,5 +1,5 @@
-import pygame, sys
-
+from game import *
+import pygame
 
 class GameClass:
     def __init__(self, window_name) -> None:
@@ -24,8 +24,25 @@ class GameClass:
         self.TILE_WIDTH = self.TILE_SIZE // 2
         self.TILE_HEIGHT = self.TILE_SIZE // 2
         self.TILE_SPACING = self.TILE_SIZE // 10
+        self.TILE_INITX = self.TILE_SPACING + self.TABLE_X
+        self.TILE_INITY = self.TILE_SPACING + self.TABLE_Y
+        self.TILES_COLORS = {
+            0: self.DEFAULT_TILE,
+            2: (238, 228, 218),
+            4: (237, 224, 200),
+            8: (242, 177, 121),
+            16: (245, 149, 99),
+            32: (246, 124, 95),
+            64: (246, 94, 59),
+            128: (237, 207, 114),
+            256: (237, 207, 114),
+            512: (237, 207, 114),
+            1024: (237, 207, 114),
+            2048: (237, 207, 114),
+        }
 
     def GAMESTATUS(self) -> bool:
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
@@ -41,8 +58,182 @@ class GameClass:
             (self.TABLE_X, self.TABLE_Y, self.TABLE_SIZE, self.TABLE_SIZE),
         )
 
-    def TILE(self):
-        pass
+    def UPDATE_TABLE(self, values: list):
+        # FIRST ROW ------------------------------------------------------------------------------
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[0][0]],
+            (self.TILE_INITX, self.TILE_INITY, self.TILE_HEIGHT, self.TILE_WIDTH),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[0][1]],
+            (
+                (self.TILE_INITX + self.TILE_SPACING + self.TILE_WIDTH),
+                self.TILE_INITY,
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[0][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 2) + (self.TILE_WIDTH * 2)),
+                self.TILE_INITY,
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[0][3]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 3) + (self.TILE_WIDTH * 3)),
+                self.TILE_INITY,
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+        # ---------------------------------------------------------------------------------------
+        # SECOND ROW ----------------------------------------------------------------------------
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[1][0]],
+            (
+                self.TILE_INITX,
+                (self.TILE_INITY + self.TILE_SPACING + self.TILE_HEIGHT),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[1][1]],
+            (
+                (self.TILE_INITX + self.TILE_SPACING + self.TILE_WIDTH),
+                (self.TILE_INITY + self.TILE_SPACING + self.TILE_HEIGHT),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[1][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 2) + (self.TILE_WIDTH * 2)),
+                (self.TILE_INITY + self.TILE_SPACING + self.TILE_HEIGHT),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[1][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 3) + (self.TILE_WIDTH * 3)),
+                (self.TILE_INITY + self.TILE_SPACING + self.TILE_HEIGHT),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+        # ---------------------------------------------------------------------------------------
+        # THIRD ROW ----------------------------------------------------------------------------
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[2][0]],
+            (
+                self.TILE_INITX,
+                (self.TILE_INITY + (self.TILE_SPACING * 2) + (self.TILE_HEIGHT * 2)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[2][1]],
+            (
+                (self.TILE_INITX + self.TILE_SPACING + self.TILE_WIDTH),
+                (self.TILE_INITY + (self.TILE_SPACING * 2) + (self.TILE_HEIGHT * 2)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[2][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 2) + (self.TILE_WIDTH * 2)),
+                (self.TILE_INITY + (self.TILE_SPACING * 2) + (self.TILE_HEIGHT * 2)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[2][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 3) + (self.TILE_WIDTH * 3)),
+                (self.TILE_INITY + (self.TILE_SPACING * 2) + (self.TILE_HEIGHT * 2)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        # ---------------------------------------------------------------------------------------
+        # FOURTH ROW ----------------------------------------------------------------------------
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[3][0]],
+            (
+                self.TILE_INITX,
+                (self.TILE_INITY + (self.TILE_SPACING * 3) + (self.TILE_HEIGHT * 3)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[3][1]],
+            (
+                (self.TILE_INITX + self.TILE_SPACING + self.TILE_WIDTH),
+                (self.TILE_INITY + (self.TILE_SPACING * 3) + (self.TILE_HEIGHT * 3)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[3][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 2) + (self.TILE_WIDTH * 2)),
+                (self.TILE_INITY + (self.TILE_SPACING * 3) + (self.TILE_HEIGHT * 3)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
+
+        pygame.draw.rect(
+            self.SCREEN,
+            self.TILES_COLORS[values[3][2]],
+            (
+                (self.TILE_INITX + (self.TILE_SPACING * 3) + (self.TILE_WIDTH * 3)),
+                (self.TILE_INITY + (self.TILE_SPACING * 3) + (self.TILE_HEIGHT * 3)),
+                self.TILE_HEIGHT,
+                self.TILE_WIDTH,
+            ),
+        )
 
     def UPDATE_SCREEN(self, FPS=60):
         pygame.display.flip()
