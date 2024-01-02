@@ -2,13 +2,6 @@ import random
 
 BLANK = 0
 
-def update_table(values: list):
-    print()
-    print(f"| {values[0][0]} | {values[0][1]} | {values[0][2]} | {values[0][3]} |")
-    print(f"| {values[1][0]} | {values[1][1]} | {values[1][2]} | {values[1][3]} |")
-    print(f"| {values[2][0]} | {values[2][1]} | {values[2][2]} | {values[2][3]} |")
-    print(f"| {values[3][0]} | {values[3][1]} | {values[3][2]} | {values[3][3]} |")
-
 
 def newColumnRow():
     return random.randint(0, 3), random.randint(0, 3)
@@ -48,7 +41,9 @@ def column(matrix, column, drop_blanks=True):
 def row(matrix, row, drop_blanks=True):
     if drop_blanks:
         return [
-            (column, value) for column, value in enumerate(matrix[row]) if value != BLANK
+            (column, value)
+            for column, value in enumerate(matrix[row])
+            if value != BLANK
         ]
     return [(column, value) for column, value in enumerate(matrix[row])]
 
@@ -119,6 +114,7 @@ def VERIFY_GAME(TABLE):
 
     return available_moves
 
+
 def AVAILABLE_SPOT(TABLE, row, column):
     return True if TABLE[row][column] == BLANK else False
 
@@ -135,4 +131,3 @@ def SpawnNumber(TABLE, number=2):
 def ExecuteUserAction(input, TABLE):
     moves = {"w": MOVEUP, "s": MOVEDOWN, "d": MOVERIGHT, "a": MOVELEFT}
     moves[input](TABLE)
-    

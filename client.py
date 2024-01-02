@@ -1,34 +1,34 @@
 from objects import GameClass
-from game import *
+from game import new_game, VERIFY_GAME, ExecuteUserAction, SpawnNumber
 
-_game = new_game()
-   
-game = GameClass(window_name="py2048")
 
-game.CLEAR_CACHE()
+def py2048():
+    table = new_game()
 
-while game.GAMESTATUS():
+    game = GameClass(window_name="py2048")
 
-    # Drawing the main window
-    game.SET_SCREEN()
+    game.CLEAR_CACHE()
 
-    # 2048 TABLE
-    game.GAMETABLE()
+    while game.GAMESTATUS():
+        # Drawing the main window
+        game.SET_SCREEN()
 
-    # If not winner/loser
-    if VERIFY_GAME(_game):
+        # 2048 TABLE
+        game.GAMETABLE()
 
-        # Update TABLE
-        game.UPDATE_TABLE(values=_game)
+        # If not winner/loser
+        if VERIFY_GAME(table):
+            # Update TABLE
+            game.UPDATE_TABLE(values=table)
 
-        # Update the display
-        game.UPDATE_SCREEN(FPS=60)
+            # Update the display
+            game.UPDATE_SCREEN(FPS=60)
 
-        # User Input
-        ExecuteUserAction(game.USER_INPUT(), _game)
+            # User Input
+            ExecuteUserAction(game.USER_INPUT(), table)
 
-        # Spawn new number in board
-        SpawnNumber(_game)
+            # Spawn new number in board
+            SpawnNumber(table)
 
-        # Update the display
-        game.UPDATE_SCREEN(FPS=60)
+            # Update the display
+            game.UPDATE_SCREEN(FPS=60)

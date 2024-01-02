@@ -1,5 +1,5 @@
-from game import *
 import pygame, sys
+
 
 class GameClass:
     def __init__(self, window_name) -> None:
@@ -43,7 +43,6 @@ class GameClass:
         }
 
     def GAMESTATUS(self) -> bool:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
@@ -276,7 +275,6 @@ class GameClass:
         self.print_value(R3C3, values[3][3])
 
     def USER_INPUT(self):
-        
         while True:
             event = pygame.event.wait()
 
@@ -287,22 +285,21 @@ class GameClass:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     return "w"
-        
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
                     return "a"
-                
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
                     return "s"
-                
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
                     return "d"
 
     def CLEAR_CACHE(self):
         pygame.event.clear()
-
 
     def UPDATE_SCREEN(self, FPS=60):
         pygame.display.flip()
