@@ -1,4 +1,4 @@
-from client import py2048
+from src.client import py2048
 
 if __name__ == "__main__":
     py2048()

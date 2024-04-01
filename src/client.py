@@ -1,5 +1,5 @@
-from objects import GameClass
-from game import new_game, VERIFY_GAME, ExecuteUserAction, SpawnNumber
+from .objects import GameClass
+from .game import new_game, VERIFY_GAME, ExecuteUserAction, SpawnNumber
 
 
 def py2048():
